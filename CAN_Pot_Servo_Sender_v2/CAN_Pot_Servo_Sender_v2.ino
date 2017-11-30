@@ -27,10 +27,7 @@ void loop()
 {
   val = analogRead(POTPIN);
   char_val = (byte)(val / 4);
-  Serial.print("Pot Value: ");
-  Serial.print(val);
-  Serial.print("Char Pot Value: ");
-  Serial.print(char_val);
+  
   byte data[8] = {char_val, 255, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07};
   // send data:  ID = 0x100, Standard CAN Frame, Data length = 8 bytes, 'data' = array of data bytes to send
   byte sndStat = CAN0.sendMsgBuf(0x123, 0, 8, data);
